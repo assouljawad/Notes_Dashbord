@@ -2,7 +2,7 @@ import React from "react";
 
 function Page() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24 bg-zinc-200">
+    <div className="flex min-h-screen flex-col items-center justify-center  bg-zinc-200">
       <div className="bg-white w-2/6 flex flex-col p-10 items-center justify-center gap-5 rounded-xl h-[400px]">
         <h1 className="font-bold text-2xl">Sign up</h1>
         <input
