@@ -1,17 +1,44 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 function Page() {
+  const [username, setusername] = useState("");
+  const [password, setpassword] = useState("");
+  const handellogin = ()=>{
+    console.log(username);
+    console.log(password);
+  }
   return (
     <div className="flex w-full min-h-screen flex-col items-center justify-center bg-zinc-200">
-        <div className="bg-white w-2/6 flex flex-col p-10 items-center justify-center gap-5 rounded-xl h-[400px]">
-          <h1 className="font-bold text-2xl">Login</h1>
-          <input className="bg-zinc-200 p-2 rounded w-full" type="text" placeholder="Email or Username" />
-          <input className="bg-zinc-200 p-2 rounded w-full" type="password" placeholder="Password" />
-          <button className="bg-green-600 w-full p-1 text-white font-bold rounded">Login</button>
-         <div className="flex gap-2 items-center">
-         <a className="text-[12px] text-blue-700" href="/forgotpassword">Forgot password</a>
-         |
-         <a className="text-[12px] text-blue-700" href="/signup">Create Account</a>
-         </div>
+      <div className="bg-white w-2/6 flex flex-col p-10 items-center justify-center gap-5 rounded-xl h-[400px]">
+        <h1 className="font-bold text-2xl">Login</h1>
+        <input
+          className="bg-zinc-200 p-2 rounded w-full"
+          type="text"
+          placeholder="Username"
+          onChange={(e)=>{
+            setusername(e.target.value)
+          }}
+        />
+        <input
+          className="bg-zinc-200 p-2 rounded w-full"
+          type="password"
+          placeholder="Password"
+          onChange={(e)=>{
+            setpassword(e.target.value)
+          }}
+        />
+        <button className="bg-green-600 w-full p-1 text-white font-bold rounded" onClick={handellogin}>
+          Login
+        </button>
+        <div className="flex gap-2 items-center">
+          <a className="text-[12px] text-blue-700" href="/forgotpassword">
+            Forgot password
+          </a>
+          |
+          <a className="text-[12px] text-blue-700" href="/signup">
+            Create Account
+          </a>
+        </div>
       </div>
     </div>
   );

@@ -36,6 +36,7 @@ function Page() {
       <div className="bg-zinc-200 w-5/6 p-5 flex flex-col gap-4">
         <div className="flex justify-between bg-white p-5 rounded items-center">
           <h1 className="text-xl font-bold">My Notes</h1>
+          <button  className="bg-black text-white p-2 w-[100px] rounded">Logout</button>
         </div>
         <div className="bg-white p-5 rounded">
           <h1 className="text-xl font-bold">Today's Notes</h1>
