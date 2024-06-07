@@ -9,8 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@aws-amplify/ui-react": "^6.1.12",
-    "aws-amplify": "^6.3.5",
+    "@aws-sdk/client-cognito-identity-provider": "^3.592.0",
+    "amazon-cognito-identity-js": "^6.3.12",
+    "aws-sdk": "^2.1636.0",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
