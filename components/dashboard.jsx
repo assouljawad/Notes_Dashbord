@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import Addnote from "@/components/addnote";
 import Deletenote from "@/components/deletenote";
 
-function Dashboard({ setisloginpage, setisAuth }) {
+function Dashboard({ setisloginpage, setisAuth, resend_username }) {
   const [addNote, setaddNote] = useState(false);
   const [deleteNote, setdeleteNote] = useState(false);
   return (
@@ -34,7 +34,7 @@ function Dashboard({ setisloginpage, setisAuth }) {
           </span>
           <span className="flex items-center gap-1 text-xl cursor-pointer">
             <IoMdPerson className="text-4xl" />
-            <span className="uppercase font-bold">j.assoul</span>
+            <span className="font-bold">{resend_username}</span>
           </span>
         </div>
       </div>
@@ -52,21 +52,21 @@ function Dashboard({ setisloginpage, setisAuth }) {
           </button>
         </div>
         <div className="bg-white p-5 rounded">
-          <h1 className="text-xl font-bold">Today&aposs Notes</h1>
+          <h1 className="text-xl font-bold">Todays Notes</h1>
           <br></br>
           <div className="flex flex-col gap-4">
             <Notecard setaddNote={setaddNote} setdeleteNote={setdeleteNote} />
           </div>
         </div>
         <div className="bg-white p-5 rounded">
-          <h1 className="text-xl font-bold">Tomorrow&aposs Notes</h1>
+          <h1 className="text-xl font-bold">Tomorrows Notes</h1>
           <br></br>
           <div className="flex flex-col gap-4">
             <Notecard setaddNote={setaddNote} setdeleteNote={setdeleteNote} />
           </div>
         </div>
         <div className="bg-white p-5 rounded">
-          <h1 className="text-xl font-bold">This Week&aposs Notes</h1>
+          <h1 className="text-xl font-bold">This Weeks Notes</h1>
           <br></br>
           <div className="flex flex-col gap-4">
             <Notecard setaddNote={setaddNote} setdeleteNote={setdeleteNote} />

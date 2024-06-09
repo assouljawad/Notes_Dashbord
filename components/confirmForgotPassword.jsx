@@ -1,41 +1,32 @@
 "use client";
 import React, { useState } from "react";
 import {
-  ConfirmSignUpCommand,
-  ResendConfirmationCodeCommand,
+  ConfirmForgotPasswordCommand,
   CognitoIdentityProviderClient,
 } from "@aws-sdk/client-cognito-identity-provider";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
 const client = new CognitoIdentityProviderClient({ region: "us-east-1" });
 
-function Validation({ resend_username, setisloginpage, setisvalidationpage }) {
+function ConfirmForgotPassword({
+  setisloginpage,
+  setisConfirmForgotPasswordpage
+}) {
   const [username, setusername] = useState("");
   const [confirmationCode, setconfirmationCode] = useState("");
-  const handelConfirm = async () => {
+  const [newPassword, setnewPassword] = useState("");
+  const handelConfirmForgotPassword = async () => {
     try {
-      const command = new ConfirmSignUpCommand({
+      const command = new ConfirmForgotPasswordCommand({
         ClientId: clientId,
         Username: username,
         ConfirmationCode: confirmationCode,
+        Password: newPassword
       });
       await client.send(command);
-      toast.success("Regestered successfully");
-      setisloginpage(true);
-      setisvalidationpage(false);
-    } catch (error) {
-      toast.error(error.message);
-    }
-  };
-  const handelResendcode = async () => {
-    try {
-      const command = new ResendConfirmationCodeCommand({
-        ClientId: clientId,
-        Username: resend_username,
-      });
-
-      await client.send(command);
-      toast.success("Verification code sent successfully");
+      toast.success("Password changed successfully");
+      setisloginpage(true)
+      setisConfirmForgotPasswordpage(false)
     } catch (error) {
       toast.error(error.message);
     }
@@ -43,7 +34,7 @@ function Validation({ resend_username, setisloginpage, setisvalidationpage }) {
   return (
     <div className="flex w-full min-h-screen flex-col items-center justify-center bg-zinc-200">
       <div className="bg-white w-2/6 flex flex-col p-10 items-center justify-center gap-5 rounded-xl h-[400px]">
-        <h1 className="font-bold text-2xl">Email Confirmation</h1>
+        <h1 className="font-bold text-2xl">Reset Password</h1>
         <input
           className="bg-zinc-200 p-2 rounded w-full"
           type="text"
@@ -60,21 +51,23 @@ function Validation({ resend_username, setisloginpage, setisvalidationpage }) {
             setconfirmationCode(e.target.value);
           }}
         />
+        <input
+          className="bg-zinc-200 p-2 rounded w-full"
+          type="password"
+          placeholder="New Password"
+          onChange={(e) => {
+            setnewPassword(e.target.value);
+          }}
+        />
         <button
           className="bg-green-600 w-full p-1 text-white font-bold rounded"
-          onClick={handelConfirm}
+          onClick={handelConfirmForgotPassword}
         >
           Confirm
         </button>
-        <span
-          className="cursor-pointer text-blue-600"
-          onClick={handelResendcode}
-        >
-          Resend the confirmation code.
-        </span>
       </div>
     </div>
   );
 }
 
-export default Validation;
+export default ConfirmForgotPassword;

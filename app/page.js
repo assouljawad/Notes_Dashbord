@@ -5,22 +5,28 @@ import Signup from "@/components/signup";
 import Forgotpassword from "@/components/forgotpassword";
 import Validation from "@/components/validation";
 import Dashboard from "@/components/dashboard";
+import ConfirmForgotPassword from "@/components/confirmForgotPassword";
+import { Toaster } from "react-hot-toast";
 
 function Page() {
-  const [username, setresendusername] = useState('');
+  const [username, setresendusername] = useState("");
   const [isAuth, setisAuth] = useState(false);
   const [isloginpage, setisloginpage] = useState(true);
   const [issignuppage, setissignuppage] = useState(false);
   const [isforgotpage, setisforgotpage] = useState(false);
   const [isvalidationpage, setisvalidationpage] = useState(false);
+  const [isConfirmForgotPasswordpage, setisConfirmForgotPasswordpage] =
+    useState(false);
 
   return (
     <div>
+      <Toaster />
       {isloginpage ? (
         <Login
           setissignuppage={setissignuppage}
           setisforgotpage={setisforgotpage}
           setisloginpage={setisloginpage}
+          setresendusername={setresendusername}
           setisAuth={setisAuth}
         />
       ) : issignuppage ? (
@@ -36,7 +42,10 @@ function Page() {
           setissignuppage={setissignuppage}
           setisforgotpage={setisforgotpage}
           setisloginpage={setisloginpage}
+          setisConfirmForgotPasswordpage={setisConfirmForgotPasswordpage}
         />
+      ) : isConfirmForgotPasswordpage ? (
+        <ConfirmForgotPassword setisConfirmForgotPasswordpage={setisConfirmForgotPasswordpage} setisloginpage={setisloginpage}  />
       ) : isvalidationpage ? (
         <Validation
           setisvalidationpage={setisvalidationpage}
@@ -45,12 +54,17 @@ function Page() {
           resend_username={username}
         />
       ) : isAuth ? (
-        <Dashboard setisloginpage={setisloginpage} setisAuth={setisAuth} />
+        <Dashboard
+          setisloginpage={setisloginpage}
+          setisAuth={setisAuth}
+          resend_username={username}
+        />
       ) : (
         <Login
           setissignuppage={setissignuppage}
           setisforgotpage={setisforgotpage}
           setisloginpage={setisloginpage}
+          setresendusername={setresendusername}
           setisAuth={setisAuth}
         />
       )}

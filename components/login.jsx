@@ -4,7 +4,7 @@ import {
   InitiateAuthCommand,
   CognitoIdentityProviderClient,
 } from "@aws-sdk/client-cognito-identity-provider";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
 const client = new CognitoIdentityProviderClient({ region: "us-east-1" });
 function Login({
@@ -29,13 +29,13 @@ function Login({
       toast.success("logged successfully");
       setisAuth(true);
       setisloginpage(false);
+      setresendusername(username)
     } catch (error) {
       toast.error(error.message);
     }
   };
   return (
     <div className="flex w-full min-h-screen flex-col items-center justify-center bg-zinc-200">
-      <Toaster />
       <div className="bg-white w-2/6 flex flex-col p-10 items-center justify-center gap-5 rounded-xl h-[400px]">
         <h1 className="font-bold text-2xl">Login</h1>
         <input
