@@ -1,8 +1,19 @@
-import { redirect } from "next/navigation";
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      {redirect("/login")}
-    </main>
-  );
+'use client'
+import React, { useState } from 'react'
+import Login from '@/components/login'
+import Signup from '@/components/signup'
+
+function page() {
+    const [isAuth, setisAuth] = useState(false)
+    const [isloginpage, setisloginpage] = useState(true)
+    const [issignuppage, setissignuppage] = useState(false)
+    const [isvalidationpage, setisvalidationpage] = useState(false)
+    const [isforgotpage, setisforgotpage] = useState(false)
+    return (
+        <div>
+            {isloginpage ? <Login setissignuppage={setissignuppage} setisforgotpage={setisforgotpage} setisloginpage={setisloginpage} /> : issignuppage ? <Signup setissignuppage={setissignuppage} setisforgotpage={setisforgotpage} setisloginpage={setisloginpage} /> : null}
+        </div>
+    )
 }
+
+export default page

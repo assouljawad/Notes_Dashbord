@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-function Page() {
+function Login({setissignuppage, setisforgotpage, setisloginpage}) {
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
   const handellogin = ()=>{
@@ -31,17 +31,24 @@ function Page() {
           Login
         </button>
         <div className="flex gap-2 items-center">
-          <a className="text-[12px] text-blue-700" href="/forgotpassword">
+          <span className="text-[12px] text-blue-700" onClick={()=>{
+            setisforgotpage(true)
+            setisloginpage(false)
+          }}>
             Forgot password
-          </a>
+          </span>
           |
-          <a className="text-[12px] text-blue-700" href="/signup">
+          <span className="text-[12px] text-blue-700" onClick={()=>{
+            setisforgotpage(false)
+            setisloginpage(false)
+            setissignuppage(true)
+          }}>
             Create Account
-          </a>
+          </span>
         </div>
       </div>
     </div>
   );
 }
 
-export default Page;
+export default Login;
