@@ -4,28 +4,34 @@ import {
   SignUpCommand,
   CognitoIdentityProviderClient,
 } from "@aws-sdk/client-cognito-identity-provider";
-import toast, { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from "react-hot-toast";
 const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
 const client = new CognitoIdentityProviderClient({ region: "us-east-1" });
-function Signup() {
+function Signup({
+  setissignuppage,
+  setisforgotpage,
+  setisloginpage,
+  setisvalidationpage,
+  setresendusername,
+}) {
   const [email, setemail] = useState("");
   const [username, setusername] = useState("");
   const [password, setpassword] = useState("");
-  const [iserror, setiserror] = useState(false);
   const handelsginup = async () => {
     try {
-      const data = new SignUpCommand({
+      const command = new SignUpCommand({
         ClientId: clientId,
         Username: username,
         Password: password,
         UserAttributes: [{ Name: "email", Value: email }],
       });
-      await client.send(data)
+      await client.send(command);
+      setresendusername(username);
+      setissignuppage(false);
+      setisvalidationpage(true);
     } catch (error) {
-      setiserror(true)
-      toast.error(error.message)
+      toast.error(error.message);
     }
-
   };
   return (
     <div className="flex min-h-screen flex-col items-center justify-center  bg-zinc-200">
@@ -63,13 +69,27 @@ function Signup() {
           Sign up
         </button>
         <div className="flex gap-2 items-center">
-          <a className="text-[12px] text-blue-700" href="/forgotpassword">
+          <span
+            className="text-[12px] text-blue-700 cursor-pointer"
+            onClick={() => {
+              setisforgotpage(true);
+              setisloginpage(false);
+              setissignuppage(false);
+            }}
+          >
             Forgot password
-          </a>
+          </span>
           |
-          <a className="text-[12px] text-blue-700" href="/login">
+          <span
+            className="text-[12px] text-blue-700 cursor-pointer"
+            onClick={() => {
+              setisforgotpage(false);
+              setisloginpage(true);
+              setissignuppage(false);
+            }}
+          >
             Login
-          </a>
+          </span>
         </div>
       </div>
     </div>
