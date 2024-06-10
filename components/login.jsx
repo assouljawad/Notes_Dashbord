@@ -11,6 +11,7 @@ function Login({
   setissignuppage,
   setisforgotpage,
   setisloginpage,
+  setresendusername,
   setisAuth,
 }) {
   const [username, setusername] = useState("");
