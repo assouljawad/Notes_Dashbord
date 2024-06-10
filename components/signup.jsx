@@ -4,7 +4,7 @@ import {
   SignUpCommand,
   CognitoIdentityProviderClient,
 } from "@aws-sdk/client-cognito-identity-provider";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 const clientId = process.env.NEXT_PUBLIC_CLIENT_ID;
 const client = new CognitoIdentityProviderClient({ region: "us-east-1" });
 function Signup({

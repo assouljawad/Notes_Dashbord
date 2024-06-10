@@ -8,8 +8,10 @@ import Notecard from "@/components/notecard";
 import { useEffect, useState } from "react";
 import Addnote from "@/components/addnote";
 import Deletenote from "@/components/deletenote";
+import toast from "react-hot-toast";
 
-function Dashboard({ setisloginpage, setisAuth, resend_username }) {
+const Dashboard = ({ setisloginpage, setisAuth, resend_username, notes }) => {
+  console.log(notes);
   const [addNote, setaddNote] = useState(false);
   const [deleteNote, setdeleteNote] = useState(false);
   return (
@@ -55,21 +57,23 @@ function Dashboard({ setisloginpage, setisAuth, resend_username }) {
           <h1 className="text-xl font-bold">Todays Notes</h1>
           <br></br>
           <div className="flex flex-col gap-4">
-            <Notecard setaddNote={setaddNote} setdeleteNote={setdeleteNote} />
+            {notes.map((note, key)=>{
+              return <Notecard key={key} setaddNote={setaddNote} setdeleteNote={setdeleteNote} note={note} />
+            })}
           </div>
         </div>
         <div className="bg-white p-5 rounded">
           <h1 className="text-xl font-bold">Tomorrows Notes</h1>
           <br></br>
           <div className="flex flex-col gap-4">
-            <Notecard setaddNote={setaddNote} setdeleteNote={setdeleteNote} />
+            {/* <Notecard setaddNote={setaddNote} setdeleteNote={setdeleteNote} /> */}
           </div>
         </div>
         <div className="bg-white p-5 rounded">
           <h1 className="text-xl font-bold">This Weeks Notes</h1>
           <br></br>
           <div className="flex flex-col gap-4">
-            <Notecard setaddNote={setaddNote} setdeleteNote={setdeleteNote} />
+            {/* <Notecard setaddNote={setaddNote} setdeleteNote={setdeleteNote} /> */}
           </div>
         </div>
       </div>
@@ -77,6 +81,6 @@ function Dashboard({ setisloginpage, setisAuth, resend_username }) {
       {deleteNote ? <Deletenote setdeleteNote={setdeleteNote} /> : null}
     </div>
   );
-}
+};
 
 export default Dashboard;

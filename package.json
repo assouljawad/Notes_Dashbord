@@ -12,6 +12,7 @@
     "@aws-sdk/client-cognito-identity-provider": "^3.592.0",
     "amazon-cognito-identity-js": "^6.3.12",
     "aws-sdk": "^2.1636.0",
+    "axios": "^1.7.2",
     "next": "14.2.3",
     "react": "^18",
     "react-dom": "^18",
